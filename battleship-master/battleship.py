@@ -1,17 +1,4 @@
-#!/usr/bin/env python
-# -*- coding: utf-8 -*-
-"""
-This is a project powered by Codecademy students.
-The project features a modified single-player version of the classic game: battleships.
-
-Game based on tutorials by Al Sweigart in his book 'Making Games with Python
-& Pygame"
-http://inventwithpython.com/pygame/chapters/
-
-The game requires python 2 and the pygame modules.
-The game is a battleship puzzle game. The objective is to sink all the ships in as few shots as possible.
-The markers on the edges of the game board tell you how many ship pieces are in each column and row.
-"""
+#this is a puzzle game, based on battleship game
 # Importing pygame modules
 import random, sys, pygame
 from pygame.locals import *
@@ -101,7 +88,6 @@ def main():
 def run_game():
     """
     Function is executed while a game is running.
-    
     returns the amount of shots taken
     """
     revealed_tiles = generate_default_tiles(False) #Contains the list of the tiles revealed by user
@@ -174,7 +160,6 @@ def generate_default_tiles(default_value):
     """
     Function generates a list of 10 x 10 tiles. The list will contain tuples
     ('shipName', boolShot) set to their (default_value).
-    
     default_value -> boolean which tells what the value to set to
     the list of tuples
     """
@@ -186,7 +171,6 @@ def generate_default_tiles(default_value):
 def blowup_animation(coord):
     """
     Function creates the explosition played if a ship is shot.
-    
     coord -> tuple of tile coords to apply the blowup animation
     """
     for image in EXPLOSION_IMAGES: # go through the list of images in the list of pictures and play them in sequence 
@@ -200,7 +184,6 @@ def blowup_animation(coord):
 def check_revealed_tile(board, tile):
     """
     Function checks if a tile location contains a ship piece.
-    
     board -> the tiled board either a ship piece or none
     tile -> location of tile
     returns True if ship piece exists at tile location
@@ -212,7 +195,6 @@ def reveal_tile_animation(board, tile_to_reveal):
     """
     Function creates an animation which plays when the mouse is clicked on a tile, and whatever is
     behind the tile needs to be revealed.
-    
     board -> list of board tile tuples ('shipName', boolShot)
     tile_to_reveal -> tuple of tile coords to apply the reveal animation to
     """
@@ -223,7 +205,6 @@ def reveal_tile_animation(board, tile_to_reveal):
 def draw_tile_covers(board, tile, coverage):
     """
     Function draws the tiles according to a set of variables.
-    
     board -> list; of board tiles
     tile -> tuple; of tile coords to reveal
     coverage -> int; amount of the tile that is covered
@@ -255,7 +236,6 @@ def check_for_quit():
 def check_for_win(board, revealed):
     """
     Function checks if the current board state is a winning state.
-    
     board -> the board which contains the ship pieces
     revealed -> list of revealed tiles
     returns True if all the ships are revealed
@@ -270,7 +250,6 @@ def check_for_win(board, revealed):
 def draw_board(board, revealed):
     """
     Function draws the game board.
-    
     board -> list of board tiles
     revealed -> list of revealed tiles
     """
@@ -304,10 +283,9 @@ def set_markers(board):
     """
     Function creates the lists of the markers to the side of the game board which indicates
     the number of ship pieces in each row and column.
-    
     board: list of board tiles
     returns the 2 lists of markers with number of ship pieces in each row (xmarkers)
-        and column (ymarkers)
+    and column (ymarkers)
     """
     xmarkers = [0 for i in range(BOARDWIDTH)]
     ymarkers = [0 for i in range(BOARDHEIGHT)]
@@ -324,7 +302,6 @@ def set_markers(board):
 def draw_markers(xlist, ylist):
     """
     Function draws the two list of markers to the side of the board.
-
     xlist -> list of row markers
     ylist -> list of column markers
     """
@@ -348,7 +325,6 @@ def draw_markers(xlist, ylist):
 def add_ships_to_board(board, ships):
     """
     Function goes through a list of ships and add them randomly into a board.
-    
     board -> list of board tiles
     ships -> list of ships to place on board
     returns list of board tiles with ships placed on certain tiles
@@ -385,7 +361,6 @@ def add_ships_to_board(board, ships):
 def make_ship_position(board, xPos, yPos, isHorizontal, length, ship):
     """
     Function makes a ship on a board given a set of variables
-    
     board -> list of board tiles
     xPos -> x-coordinate of first ship piece
     yPos -> y-coordinate of first ship piece
@@ -414,7 +389,6 @@ def make_ship_position(board, xPos, yPos, isHorizontal, length, ship):
 def hasAdjacent(board, xPos, yPos, ship):
     """
     Funtion checks if a ship has adjacent ships
-    
     board -> list of board tiles
     xPos -> x-coordinate of first ship piece
     yPos -> y-coordinate of first ship piece
@@ -432,7 +406,6 @@ def hasAdjacent(board, xPos, yPos, ship):
 def left_top_coords_tile(tilex, tiley):
     """
     Function calculates and returns the pixel of the tile in the top left corner
-    
     tilex -> int; x position of tile
     tiley -> int; y position of tile
     returns tuple (int, int) which indicates top-left pixel coordinates of tile
@@ -445,7 +418,6 @@ def left_top_coords_tile(tilex, tiley):
 def get_tile_at_pixel(x, y):
     """
     Function finds the corresponding tile coordinates of pixel at top left, defaults to (None, None) given a coordinate.
-    
     x -> int; x position of pixel
     y -> int; y position of pixel
     returns tuple (tilex, tiley) 
@@ -462,7 +434,6 @@ def get_tile_at_pixel(x, y):
 def draw_highlight_tile(tilex, tiley):
     """
     Function draws the hovering highlight over the tile.
-    
     tilex -> int; x position of tile
     tiley -> int; y position of tile
     """
@@ -509,7 +480,6 @@ def show_help_screen():
 def check_for_keypress():
     """
     Function checks for any key presses by pulling out all KEYDOWN and KEYUP events from queue.
-    
     returns any KEYUP events, otherwise return None
     """
     for event in pygame.event.get([KEYDOWN, KEYUP, MOUSEBUTTONDOWN, MOUSEBUTTONUP, MOUSEMOTION]):
@@ -522,7 +492,6 @@ def check_for_keypress():
 def make_text_objs(text, font, color):
     """
     Function creates a text.
-    
     text -> string; content of text
     font -> Font object; face of font
     color -> tuple of color (red, green blue); colour of text
@@ -535,7 +504,6 @@ def make_text_objs(text, font, color):
 def show_gameover_screen(shots_fired):
     """
     Function display a gameover screen when the user has successfully shot at every ship pieces.
-    
     shots_fired -> the number of shots taken before game is over
     """
     DISPLAYSURF.fill(BGCOLOR)
